@@ -1,6 +1,7 @@
 ﻿var http = require('http');
 var port = process.env.port || 1337
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 //var ejsEngine = require('ejs-locals');
 var controllers = require('./controllers');
@@ -10,6 +11,11 @@ var controllers = require('./controllers');
 //app.engine('ejs', ejsEngine); //support master pages
 //app.set('view engine', 'ejs'); // ejs view engine
 app.set('view engine', 'vash'); // vash view engine
+
+//Opt into Services
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 //set the public static resource folder
 app.use(express.static(__dirname + '/public'));
