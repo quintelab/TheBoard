@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var app = express();
 //var ejsEngine = require('ejs-locals');
 var controllers = require('./controllers');
+var flash = require('connect-flash');
+var cookieParser = require('cookie-parser')
+var session = require('express-session')
 
 //Setup the View Engine
 //app.set('view engine', 'jade'); // jade view engine
@@ -16,6 +19,9 @@ app.set('view engine', 'vash'); // vash view engine
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(cookieParser());
+app.use(session({ secret: 'BrunoQuintellaSession' }));
+app.use(flash());
 
 //set the public static resource folder
 app.use(express.static(__dirname + '/public'));
