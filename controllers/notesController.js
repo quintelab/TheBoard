@@ -16,6 +16,27 @@
                 }
             });
         });
+
+        app.post('/api/notes/:categoryName', function(req, res) {
+
+            var categoryName = req.params.categoryName;
+            var noteToInsert = {
+                note: req.body.note,
+                color: req.body.color,
+                author: 'Bruno Quintella'
+            };
+
+            data.addNote(categoryName, noteToInsert, function(err) {
+                if(err){
+                    res.send(400, 'Failed to add note do data store');
+                } else {
+                    res.set('Content-Type', 'application/json');
+                    res.send(201, noteToInsert);
+                }
+            });
+
+        });
+
     };
 
 

@@ -16,9 +16,8 @@ var session = require('express-session')
 app.set('view engine', 'vash'); // vash view engine
 
 //Opt into Services
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({ secret: 'BrunoQuintellaSession' }));
 app.use(flash());
