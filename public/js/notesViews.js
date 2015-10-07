@@ -1,10 +1,14 @@
 (function (angular) {
 
-  var theModule = angular.module('notesView', []);
+  var theModule = angular.module('notesView', ['ui.bootstrap']);
 
   theModule.controller('notesViewController', ['$scope', "$window", "$http",
     function($scope, $window, $http){
       $scope.notes = [];
+      $scope.newNote = {
+        note: '',
+        color: 'yellow'
+      };
 
       //Get the category name
       var urlParts = $window.location.pathname.split('/');
