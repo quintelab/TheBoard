@@ -10,7 +10,7 @@
           <div>{{ n.note }}</div>
           <div class="note-author"><small>-{{ n.author }}</small></div>
         </div>
-        <form role="form" class="form-horizontal" name="newNoteForm">
+        <form role="form" class="form-horizontal" name="newNoteForm" ng-submit="save()">
           <div class="form-group">
             <label class="control-label col-lg-1">Color</label>
             <div class="col-lg-5">
