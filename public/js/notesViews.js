@@ -2,30 +2,23 @@
 
   var theModule = angular.module('notesView', []);
 
-  theModule.controller('notesViewController', ['$scope',
-    function($scope){
-      $scope.notes = [
-        {
-          note: 'Hello World',
-          color: 'yellow',
-          author: 'Bruno Quintella'
-        },
-        {
-          note: 'Hello World Again',
-          color: 'blue',
-          author: 'Bruno Quintella'
-        },
-        {
-          note: 'Hello World Finally',
-          color: 'green',
-          author: 'Bruno Quintella'
-        },
-        {
-          note: 'This is from JS code',
-          color: 'orange',
-          author: 'Bruno Quintella'
-        }
-      ];
+  theModule.controller('notesViewController', ['$scope', "$window", "$http",
+    function($scope, $window, $http){
+      $scope.notes = [];
+
+      //Get the category name
+      var urlParts = $window.location.pathname.split('/');
+      var categoryName = urlParts[urlParts.length - 1];
+
+      var notesUrl = '/api/notes/' + categoryName;
+      $http.get(notesUrl)
+        .then(function(result) {
+          //success
+          $scope.notes = result.data;
+        }, function (err) {
+          // Error
+          alert(err);
+        });
     }
   ]);
 
