@@ -77,6 +77,11 @@
       authFunction(req, res, next);
     });
 
+    app.get('/logout', function(req, res) {
+      req.logout();
+      res.redirect('/');
+    });
+
     app.get('/register', function (req, res) {
       res.render('register', { title: 'Register for the Board', message: req.flash('registrationError') });
     });

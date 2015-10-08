@@ -32,7 +32,11 @@
               <a href="/register">Register</a>
             </li>
 						<li class="nav">
-              <a href="/login">Login</a>
+							@if (model.user) {
+								<a href="/logout">Logout</a>
+							} else {
+              	<a href="/login">Login</a>
+							}
             </li>
           </ul>
         </div>
